@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--
+
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><!-- Insert all types and all origins -->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=0.5, width=device-width, height=device-height" />
+        <meta name="color-scheme" content="light dark">
+        <title>RADIO SMB ST&#11088;R</title>
+        <!-- Glossy -->
+        <link rel="stylesheet" href="vendor/jquery.mobile-1.4.5/jquery.mobile.structure-1.4.5.min.css">
+        <link rel="stylesheet" href="themes/glossify_jquery_mobile_theme_1.1.0/jquery.mobile.glossify.theme.css">
+        <script src="vendor/jquery-1.8.0.min.js"></script>
+        <script src="vendor/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="vendor/jsm_toast.js"></script>
+    </head>
+    <body>
+    
+    <!-- ........................................ Start of index page ........................................  -->
+    
+    <div data-role="page" id="index" data-theme="a" data-content-theme="a">
+    	
+        <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme="a">
+            <h2><span  id="pgmtitle">SMB ST&#11088;R</span></h2>
+        </div><!-- /header -->
+	  
+        <div data-role="content">
+        
+
+            <div class="ui-body ui-body-a ui-corner-all">
+                <h3 id='urltitle'>Actuellement ...</h3>
+                <span id='songtitle'></span>
+            </div>
+
+            <center><p><img src="img/logo.png" alt="SMB33 Logo" onclick="window.open(encodeURI('https://www.smb33.fr/'), '_system')"/></p></center>
+
+            <center><span id='framed'>COUCOU</span></center>
+
+            <div class="ui-body ui-body-a ui-corner-all">
+                <h3>Flux</h3>
+				<input type='text' id='urlinfo' value='https://s44.myradiostream.com/8814/listen.mp3' disabled></input>
+            </div>
+
+        </div><!-- /content -->
+
+        <!-- footer -->
+
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false" data-theme="a">
+            <div data-role="navbar">
+            <ul>
+                <!--<li><button class="ui-btn" onclick="PlayStream();" autofocus>LECTURE</button></li>
+                <li><button class="ui-btn" onclick="PauseStream();" autofocus>PAUSE</button></li> -->
+                <li><button class="ui-btn" onclick="Info();">INFOS</button></li>
+                <li><button class="ui-btn" onclick="exitFromApp();">QUITTER</button></li>
+            </ul>
+            </div>
+        </div>
+
+
+    </div><!-- /page -->
+
+    <!-- Javascript -->
+
+    <script src="cordova.js" onload="javascript:window.isCordovaApp = true;"></script>
+    <!-- <script src="js/index.js"></script> -->
+    <script src="js/stats.js"></script>
+
+    <script>
+
+
+    $(document).ready(function(){
+        if( !window.isCordovaApp )
+        {
+            $("#framed").html(" <div class='ui-body ui-body-a ui-corner-all'><audio id='controlaudio' controls><source src='http://s44.myradiostream.com:8814/;stream.nsv' type='audio/mpeg'>Your browser does not support the audio tag.<\/audio><\/div>");
+        }
+    });
+
+    function onDeviceReady() { /* Onny for Cordova */
+    // Cordova is now initialized. Have fun!
+
+        console.debug('RADIOSMB: Running cordova-' + cordova.platformId + '@' + cordova.version);
+    }
+
+    function Info()
+    {
+        toast("&#169; O.Booklage 2023");
+    }
+
+    function exitFromApp()
+        {
+            /* navigator.notification.beep(2); */
+            console.log("RADIOSMB33 : exitFromApp");
+            /* PauseStream(); */
+            if( window.isCordovaApp == true )
+                navigator.app.exitApp();
+        }
+
+    </script>
+        
+    </body>
+</html>
